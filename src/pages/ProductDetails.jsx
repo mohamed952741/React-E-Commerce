@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from 'react-redux';
+import { addToCart } from "../store/cartSlice";
 
 export default function ProductDetails(){
     const {id} = useParams();
     const [product,setProduct] = useState(null);
+    const dispatch = useDispatch();
+    const handleAddToCart = () => {
+        dispatch(addToCart(product));
+      };
     useEffect(()=>{
         axios.get('https://dummyjson.com/products/'+id).then(res => setProduct(res.data));
     },[id])
@@ -17,6 +23,7 @@ export default function ProductDetails(){
             <p>{product.description}</p>
             <p>${product.price} USD</p>
             <p>{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</p>
+            <button onClick={handleAddToCart} disabled={product.stock === 0}>Add to Cart</button>
         </div>
         </>
     );

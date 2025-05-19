@@ -5,6 +5,7 @@ import NotFound from './pages/NotFound'
 import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
 import NavBar from './components/NavBar'
+import Register from './pages/Register'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/product/:id' element={<ProductDetails/>} />
         <Route path='/cart' element={<Cart/>} />
         <Route path='*' element={<NotFound/>} />
+        <Route path='/register' element={<Register/>}></Route>
       </Routes>
     </Router>
     </>
