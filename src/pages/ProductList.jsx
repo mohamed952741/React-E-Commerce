@@ -7,9 +7,10 @@ export default function ProductList(){
     const [products,setProducts] = useState([]);
     const [skip,setSkip] = useState(0);
     const limit = 10;
+    const baseUrl = import.meta.env.VITE_API_URL;
 
     const fetchProducts = async () =>{
-        const res = await axios.get('https://dummyjson.com/products?limit='+limit+'&skip='+skip);
+        const res = await axios.get(`${baseUrl}?limit=${limit}&skip=${skip}`);
         setProducts(res.data.products);
     };
     useEffect(() => {fetchProducts();

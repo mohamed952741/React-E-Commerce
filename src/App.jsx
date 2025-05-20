@@ -1,11 +1,17 @@
 import './App.css'
 import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
-import ProductList from './pages/ProductList'
+//import ProductList from './pages/ProductList'
 import NotFound from './pages/NotFound'
-import ProductDetails from './pages/ProductDetails'
-import Cart from './pages/Cart'
+//import ProductDetails from './pages/ProductDetails'
+//import Cart from './pages/Cart'
 import NavBar from './components/NavBar'
-import Register from './pages/Register'
+//import Register from './pages/Register'
+import { lazy } from 'react'
+
+const Cart = lazy(()=> import('./pages/Cart'))
+const ProductList = lazy(()=> import('./pages/ProductList'))
+const ProductDetails = lazy(()=> import('./pages/ProductDetails'))
+const Register = lazy(()=> import('./pages/Register'))
 
 function App() {
   return (

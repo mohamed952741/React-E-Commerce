@@ -7,13 +7,19 @@ import { addToCart } from "../store/cartSlice";
 export default function ProductDetails(){
     const {id} = useParams();
     const [product,setProduct] = useState(null);
+    const BASE_URL = import.meta.env.VITE_API_URL;
     const dispatch = useDispatch();
     const handleAddToCart = () => {
         dispatch(addToCart(product));
       };
-    useEffect(()=>{
-        axios.get('https://dummyjson.com/products/'+id).then(res => setProduct(res.data));
-    },[id])
+
+  useEffect(() => {
+    console.log("Base URL from env:", import.meta.env.VITE_API_URL);
+    axios.get(`${BASE_URL}/${id}`)
+      .then((res) => setProduct(res.data))
+      .catch((err) => console.error(err));
+  }, [id,BASE_URL]);
+
     if(!product) return <p>Loading data from server........</p>
     return(
         <>
